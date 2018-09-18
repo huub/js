@@ -32,7 +32,7 @@
 		<div class="yellow" ng-app="NgApp">
 
 			<app-directive naam="Met een complete vue app erin"></app-directive>
-<p/>
+<p />
 			<div id="vue-app"></div>
 
 		</div>
@@ -82,7 +82,7 @@ ANGULARJS-CODE
 angular.module("NgApp", []).directive("appDirective", function() {
   return {
     template: `<div @click="klik()" id="el">
-		Dit is de template van de app-directive
+		Dit is de template van de app-directive (klik)
 		<vue-component @click="klik()" v-bind:naam="naam" ngNonBindable></vue-component>
     </div>`,
      link: function(scope, element, attribs) {
@@ -103,15 +103,15 @@ angular.module("NgApp", []).directive("appDirective", function() {
   }
 }).directive('ngDirective', function() {
 	return {
-		template: `Dit is de ng-directive template [{{naam}}] (klik)`,
+		template: `<div>[Dit is de ng-directive template [{{naam}}] (klik)<vue-component  naam="test vue-component in directive in vue-app"></vue-component>]</div>`,
 		link: function(scope, element, attributes) {
+
 			scope.naam = attributes.naam;
-			function functionToBeCalled () {
+			function change () {
 				scope.naam = "OK"
 				 scope.$apply();
 			}
-            element.on('click', functionToBeCalled);
+            element.on('click', change);
 		}
 	}
 })
-</html>
