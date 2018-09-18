@@ -1,0 +1,17 @@
+<html><head>
+	<title>Hi</title></head>
+	<script src="dist/bundle.js"></script>
+</head>
+<body>
+
+	<div id="hi"></div>
+	<div id="hi-again"></div>
+
+	<script>
+	var app = new AppLib.Main();
+	app.sayHi('hi')
+	app.dom.html('hi-again', 'hi, hi')
+	</script>
+
+</body>
+</html>
