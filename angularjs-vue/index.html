@@ -9,30 +9,11 @@
 </head>
 
 <body>
-<xmp>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
-
-	<body>
-
-			<div ng-app="NgApp">
-
-				<app-directive naam="Met een complete vue app erin"></app-directive>
-
-				<div id="vue-app"></div>
-
-			</div>
-
-	</body>
-
-	<script src="angularjs-code.js"></script>
-	<script src="vue-code.js"></script>
-</xmp>
 		<div class="yellow" ng-app="NgApp">
 
 			<app-directive naam="Met een complete vue app erin"></app-directive>
-<p />
+			<p></p>
 			<div id="vue-app"></div>
 
 		</div>
@@ -41,77 +22,5 @@
 
 <script src="vue-code.js"></script>
 <script src="angularjs-code.js"></script>
-<xmp>
-VUE-CODE
-========
 
-Vue.config.ignoredElements = [
-  /^ng-/
-]
-
-Vue.component('vue-component', {
-	props: ["naam"],
-	data: function(){
-		return {
-			lokaleklik: 'Neen',
-			i:1
-		}
-	},
-	template: `<div>[Dit is de vue-component [{{naam}}]
-		<div  @click="klik()">[lokaal geklikt ? {{lokaleklik}} (klik)]</div>
-	</div>`,
-	methods:{klik:function() {
-		this.lokaleklik = "Jawel, " + this.i++ + " keer"
-		}
-	}})
-
-new Vue({
-	el: "#vue-app",
-
-	data: function() {
-		return {
-			naam: "Angular Directive"
-		}
-	},
-	template:`<div>Dit is een andere vue app. <ng-directive :naam="naam"></ng-directive></div>`
-})
-
-
-ANGULARJS-CODE
-==============
-angular.module("NgApp", []).directive("appDirective", function() {
-  return {
-    template: `<div @click="klik()" id="el">
-		Dit is de template van de app-directive (klik)
-		<vue-component @click="klik()" v-bind:naam="naam" ngNonBindable></vue-component>
-    </div>`,
-     link: function(scope, element, attribs) {
-		 scope.vm = new Vue({
-		 	el: "#el",
-		 	data: function () { return {
-					naam: attribs.naam
-		 		}
-		 	},
-		 	methods: {
-				klik: function(){
-					this.naam = "OK"
-				}
-			}
-		});
-     }
-
-  }
-}).directive('ngDirective', function() {
-	return {
-		template: `<div>[Dit is de ng-directive template [{{naam}}] (klik)<vue-component  naam="test vue-component in directive in vue-app"></vue-component>]</div>`,
-		link: function(scope, element, attributes) {
-
-			scope.naam = attributes.naam;
-			function change () {
-				scope.naam = "OK"
-				 scope.$apply();
-			}
-            element.on('click', change);
-		}
-	}
-})
+</html>
